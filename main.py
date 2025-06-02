@@ -58,20 +58,10 @@ def main():
             
             elif current_screen == "game":
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_ESCAPE:
+                    result = game.handle_event(event)
+                    if result == "menu":
                         current_screen = "menu"
                         menu.setup_main_menu()
-                    elif event.key == pygame.K_r:
-                        game.board.reset()
-                    elif not game.board.is_game_over():
-                        if event.key == pygame.K_LEFT:
-                            game.board.move('left')
-                        elif event.key == pygame.K_RIGHT:
-                            game.board.move('right')
-                        elif event.key == pygame.K_UP:
-                            game.board.move('up')
-                        elif event.key == pygame.K_DOWN:
-                            game.board.move('down')
         
         # Отрисовка текущего экрана
         if current_screen == "menu" or current_screen == "settings":

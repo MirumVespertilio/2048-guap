@@ -5,6 +5,8 @@ class Board:
         self.size = size
         self.grid = [[0] * size for _ in range(size)]
         self.score = 0
+        self.won = False
+        self.has_pressed_continue = False
         self.add_random_tile()  # Добавляем плитки при старте игры
         self.add_random_tile()
 
@@ -12,6 +14,8 @@ class Board:
         """Сбросить игровое поле"""
         self.grid = [[0] * self.size for _ in range(self.size)]
         self.score = 0
+        self.won = False
+        self.has_pressed_continue = False
         self.add_random_tile()
         self.add_random_tile()
 
@@ -98,3 +102,11 @@ class Board:
                     return False
         
         return True
+    
+    def has_won(self):
+        """Проверяет, достигнута ли плитка 2048 и устанавливает флаг won"""
+        if any(2048 in row for row in self.grid):
+            self.won = True
+            return True
+        return False
+

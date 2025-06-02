@@ -47,6 +47,8 @@ class UI:
         
         if self.board.is_game_over():
             self.draw_game_over()
+        elif self.board.has_won():
+            self.draw_win()
     
     def draw_score(self):
         """Отрисовывает текущий счёт (всегда чёрный текст)"""
@@ -83,3 +85,34 @@ class UI:
         instruction = font_small.render("Нажмите R чтобы начать снова", True, (220, 220, 220))
         instr_rect = instruction.get_rect(center=(center_x, center_y + 100))  # Смещено вниз
         self.screen.blit(instruction, instr_rect)
+    
+    def draw_win(self):
+        """Рисует экран победы"""
+        if not self.board.has_pressed_continue:  # Показываем только если не нажат пробел
+            overlay = pygame.Surface((self.screen.get_width(), self.screen.get_height()), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 180))
+            self.screen.blit(overlay, (0, 0))
+            
+            center_x, center_y = self.screen.get_width() // 2, self.screen.get_height() // 2
+            
+            # Заголовок "ПОБЕДА!"
+            font_large = pygame.font.SysFont('Arial', 72, bold=True)
+            win_text = font_large.render("ПОБЕДА!", True, (100, 255, 100))
+            win_rect = win_text.get_rect(center=(center_x, center_y - 100))
+            self.screen.blit(win_text, win_rect)
+            
+            # Сообщение
+            font_medium = pygame.font.SysFont('Arial', 36)
+            message = font_medium.render("Вы собрали плитку 2048!", True, (220, 220, 220))
+            message_rect = message.get_rect(center=(center_x, center_y))
+            self.screen.blit(message, message_rect)
+            
+            # Инструкции
+            font_small = pygame.font.SysFont('Arial', 30)
+            continue_text = font_small.render("Продолжить игру - ПРОБЕЛ", True, (220, 220, 220))
+            continue_rect = continue_text.get_rect(center=(center_x, center_y + 80))
+            self.screen.blit(continue_text, continue_rect)
+            
+            menu_text = font_small.render("Выйти в меню - ESC", True, (220, 220, 220))
+            menu_rect = menu_text.get_rect(center=(center_x, center_y + 120))
+            self.screen.blit(menu_text, menu_rect)
