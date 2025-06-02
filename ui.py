@@ -18,7 +18,7 @@ class UI:
         padding = 10
         board_size = tile_size * self.board.size + padding * 2
         board_x = (screen_width - board_size) // 2
-        board_y = (screen_height - board_size) // 2 + 50 
+        board_y = (screen_height - board_size) // 2 + 50
 
         # Отрисовка фона доски
         pygame.draw.rect(self.screen, self.theme['board'], 
@@ -52,7 +52,9 @@ class UI:
         """Отрисовывает текущий счёт (всегда чёрный текст)"""
         score_text = f"Счёт: {self.board.score}"
         font = pygame.font.SysFont('Arial', 48, bold=True)
-        text_surface = font.render(score_text, True, (0, 0, 0))
+        text_color = self.theme['button_colors']['text']
+        # (255, 255, 255) if self.theme == THEMES['dark'] else (0, 0, 0)
+        text_surface = font.render(score_text, True, text_color)
         text_rect = text_surface.get_rect(center=(self.screen.get_width() // 2, 60))
         self.screen.blit(text_surface, text_rect)
     

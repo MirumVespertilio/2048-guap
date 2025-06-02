@@ -16,7 +16,7 @@ pygame.display.set_caption("2048 Game")
 def main():
     menu = Menu(screen)
     current_screen = "menu"  # может быть "menu", "game" или "settings"
-    game_settings = {"theme": "dark", "grid_size": 4}
+    game_settings = {"theme": "light", "grid_size": 4}
     game = None
 
     clock = pygame.time.Clock()

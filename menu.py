@@ -11,7 +11,7 @@ class Button:
         self.is_hovered = False
         self.is_selected = is_selected
         self.border_color = border_color if border_color else (0, 0, 0)
-        self.font = pygame.font.SysFont('Arial', 40)
+        self.font = pygame.font.SysFont('Candara', 40, bold=True)
 
     def draw(self, screen):
         # Цвет кнопки зависит от состояния
@@ -22,11 +22,11 @@ class Button:
         else:
             color = self.color
             
-        pygame.draw.rect(screen, color, self.rect, border_radius=10)
+        pygame.draw.rect(screen, color, self.rect, border_radius=1)
         
         # Обводка
         border_width = 4 if self.is_selected else 2
-        pygame.draw.rect(screen, self.border_color, self.rect, border_width, border_radius=10)
+        pygame.draw.rect(screen, self.border_color, self.rect, border_width, border_radius=1)
         
         # Текст
         text_surface = self.font.render(self.text, True, self.text_color)
@@ -53,54 +53,64 @@ class Menu:
     def setup_main_menu(self):
         width, height = 300, 80
         center_x = self.screen.get_width() // 2 - width // 2
+        center_y = self.screen.get_height() // 2 
         theme = THEMES[self.current_theme]
         btn_colors = theme['button_colors']
         
         self.buttons = [
-            Button(center_x, 200, width, height, "Начать игру", btn_colors['normal'], btn_colors['hover'], btn_colors['text']),
-            Button(center_x, 300, width, height, "Настройки", btn_colors['normal'], btn_colors['hover'], btn_colors['text']),
-            Button(center_x, 400, width, height, "Выход", (200, 100, 100), (250, 150, 150), (255, 255, 255))
+            Button(
+            center_x, center_y - 100, width, height, "Начать игру", btn_colors['normal'], 
+            btn_colors['hover'], btn_colors['text'], border_color=btn_colors['border']
+        ),
+            Button(center_x, center_y, width, height, "Настройки", btn_colors['normal'], 
+            btn_colors['hover'], btn_colors['text'], border_color=btn_colors['border']
+        ),
+            Button(center_x, center_y + 100, width, height, "Выход", (200, 100, 100), (250, 150, 150), (255, 255, 255))
         ]
 
     def setup_settings_menu(self):
         width, height = 300, 60
         center_x = self.screen.get_width() // 2 - width // 2
+        center_y = self.screen.get_height() // 2 
+        theme = THEMES[self.current_theme]
+        btn_colors = theme['button_colors']
         
         # Фиксированные цвета для кнопок выбора темы
         self.buttons = [
             # Кнопка светлой темы - всегда светлая
-            Button(center_x, 150, width, height, "Тема: Светлая", 
-                    (220, 220, 220), (240, 240, 240), (0, 0, 0), 
-                    self.current_theme == 'light', (0, 0, 0)),
-            
+            Button(center_x, center_y - 180, width, height, "Тема: Светлая", 
+                (220, 220, 220), (240, 240, 240), (0, 0, 0), 
+                self.current_theme == 'light', (0, 0, 0)),
+        
             # Кнопка тёмной темы - всегда тёмная
-            Button(center_x, 230, width, height, "Тема: Тёмная", 
-                    (60, 60, 80), (90, 90, 110), (255, 255, 255), 
-                    self.current_theme == 'dark', (255, 255, 255)),
-            
-            # Кнопки размера - нейтральные голубые
-            Button(center_x, 310, width, height, "Размер: 4x4", 
-                    (180, 200, 220), (200, 220, 240), (0, 0, 0), 
-                    self.current_size == 4),
-            Button(center_x, 390, width, height, "Размер: 5x5", 
-                    (180, 200, 220), (200, 220, 240), (0, 0, 0), 
-                    self.current_size == 5),
-            Button(center_x, 470, width, height, "Размер: 6x6", 
-                    (180, 200, 220), (200, 220, 240), (0, 0, 0), 
-                    self.current_size == 6),
-            
+            Button(center_x, center_y - 100, width, height, "Тема: Тёмная", 
+                (60, 60, 80), (90, 90, 110), (255, 255, 255), 
+                self.current_theme == 'dark', (255, 255, 255)),
+        
+            # Кнопки размера
+            Button(center_x, center_y - 20, width, height, "Размер: 4x4", 
+                btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
+                self.current_size == 4),
+            Button(center_x, center_y + 60, width, height, "Размер: 5x5", 
+                btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
+                self.current_size == 5),
+            Button(center_x, center_y + 140, width, height, "Размер: 6x6", 
+                btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
+                self.current_size == 6),
+        
             # Кнопка назад
-            Button(center_x, 550, width, height, "Назад", 
-                    (200, 150, 150), (230, 180, 180), (255, 255, 255))
+            Button(center_x, center_y + 220, width, height, "Назад", 
+                (200, 150, 150), (230, 180, 180), (255, 255, 255))
         ]
 
     def draw(self):
         theme = THEMES[self.current_theme]
         self.screen.fill(theme['menu_background'])
         
-        title_font = pygame.font.SysFont('Arial', 72, bold=True)
+        title_font = pygame.font.SysFont('Bahnschrift', 100, bold=False)
         title = title_font.render("2048", True, theme['title_color'])
-        self.screen.blit(title, (self.screen.get_width() // 2 - title.get_width() // 2, 80))
+        title_y = self.screen.get_height() // 4 - 50
+        self.screen.blit(title, (self.screen.get_width() // 2 - title.get_width() // 2, title_y))
         
         for button in self.buttons:
             button.draw(self.screen)
