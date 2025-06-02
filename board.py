@@ -4,12 +4,14 @@ class Board:
     def __init__(self, size):
         self.size = size
         self.grid = [[0] * size for _ in range(size)]
+        self.score = 0
         self.add_random_tile()  # Добавляем плитки при старте игры
         self.add_random_tile()
 
     def reset(self):
         """Сбросить игровое поле"""
         self.grid = [[0] * self.size for _ in range(self.size)]
+        self.score = 0
         self.add_random_tile()
         self.add_random_tile()
 
@@ -65,7 +67,7 @@ class Board:
             self.add_random_tile()  # Добавляем новую плитку, если поле изменилось
 
     def _merge(self, tiles):
-        """Сливает плитки в ряду или колонке"""
+        """Сливает плитки в ряду или колонке и обновляет счёт"""
         new_tiles = []
         skip = False
         for i in range(len(tiles)):
@@ -73,7 +75,9 @@ class Board:
                 skip = False
                 continue
             if i + 1 < len(tiles) and tiles[i] == tiles[i + 1]:
+                new_value = tiles[i] * 2
                 new_tiles.append(tiles[i] * 2)
+                self.score += new_value 
                 skip = True
             else:
                 new_tiles.append(tiles[i])
