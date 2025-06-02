@@ -43,7 +43,7 @@ THEMES = {
     'dark': {
         'background': (18, 18, 20), 
         'menu_background': (30, 30, 40),
-        'title_color': (255, 255, 255), 
+        'title_color': (255, 230, 180), 
         'button_colors': {
             'normal': (60, 60, 80),
             'hover': (90, 90, 110),
@@ -79,7 +79,7 @@ THEMES = {
     'cosmos': {
         'background': (10, 5, 30),
         'menu_background': (15, 10, 40),
-        'title_color': (255, 255, 255),
+        'title_color': (127, 72, 112),
         'button_colors': {
             'normal': (30, 20, 60),
             'hover': (60, 40, 100),
