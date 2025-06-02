@@ -31,7 +31,7 @@ def main():
                 button_clicked = menu.handle_event(event)
                 if button_clicked:
                     if button_clicked == "Начать игру":
-                        game = Game(screen, game_settings["theme"], game_settings["grid_size"])
+                        game = Game(screen, game_settings["theme"], game_settings["grid_size"], game_settings.get("timer_enabled", False))
                         current_screen = "game"
                     elif button_clicked == "Настройки":
                         menu.setup_settings_menu()
@@ -54,6 +54,10 @@ def main():
                         game_settings["grid_size"] = size
                         menu.current_size = size  # Обновляем текущий размер в меню
                         menu.setup_settings_menu()  # Пересоздаем меню с новыми выделениями
+                    elif button_clicked == "Таймер":
+                        menu.timer_enabled = not menu.timer_enabled
+                        game_settings["timer_enabled"] = menu.timer_enabled
+                        menu.setup_settings_menu()
                     elif button_clicked == "Назад":
                         menu.setup_main_menu()
                         current_screen = "menu"

@@ -6,6 +6,7 @@ class Board:
         self.grid = [[0] * size for _ in range(size)]
         self.score = 0
         self.won = False
+        self.game_over = False
         self.has_pressed_continue = False
         self.add_random_tile()  # Добавляем плитки при старте игры
         self.add_random_tile()
@@ -15,6 +16,7 @@ class Board:
         self.grid = [[0] * self.size for _ in range(self.size)]
         self.score = 0
         self.won = False
+        self.game_over = False
         self.has_pressed_continue = False
         self.add_random_tile()
         self.add_random_tile()
@@ -89,6 +91,9 @@ class Board:
     
     def is_game_over(self):
         """Проверяет, остались ли возможные ходы"""
+        if self.game_over:  # Проверяем флаг game_over в первую очередь
+            return True
+        
         # Проверяем наличие пустых клеток
         if any(0 in row for row in self.grid):
             return False
@@ -105,8 +110,9 @@ class Board:
     
     def has_won(self):
         """Проверяет, достигнута ли плитка 2048 и устанавливает флаг won"""
-        if any(2048 in row for row in self.grid):
+        if any(2048 in row for row in self.grid) and not self.won:
             self.won = True
+            self.game_over = False  # Не завершаем игру при победе
             return True
         return False
 

@@ -113,11 +113,19 @@ class Menu:
             Button(center_x + 220, center_y, width, height, "Размер: 6x6", 
                 btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
                 self.current_size == 6),
+            
+            # Кнопка таймера
+            Button(center_x + 220, center_y + 180, width, height, "Таймер", 
+                btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
+                self.timer_enabled if hasattr(self, 'timer_enabled') else False),
         
             # Кнопка назад
             Button(center_x, center_y + 300, width, height, "Назад", 
                 (200, 150, 150), (230, 180, 180), (255, 255, 255))
         ]
+        
+        if not hasattr(self, 'timer_enabled'):
+            self.timer_enabled = False
 
     def draw(self):
         theme = THEMES[self.current_theme]
