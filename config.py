@@ -1,7 +1,3 @@
-# Настройки по умолчанию
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-
 # Цветовые темы
 THEMES = {
     'light': {

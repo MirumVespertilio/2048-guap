@@ -17,7 +17,7 @@ class Button:
     def draw(self, screen):
         # Цвет кнопки зависит от состояния
         if self.is_selected:
-            color = self.hover_color  # Используем hover_color для выбранного состояния
+            color = self.hover_color
         elif self.is_hovered:
             color = self.hover_color
         else:
@@ -52,26 +52,26 @@ class Menu:
         self.setup_main_menu()
 
     def setup_main_menu(self):
-        width, height = 300, 80
-        center_x = self.screen.get_width() // 2 - width // 2
+        WIDTH, HEIGHT = 300, 80
+        center_x = self.screen.get_width() // 2 - WIDTH // 2
         center_y = self.screen.get_height() // 2 
         theme = THEMES[self.current_theme]
         btn_colors = theme['button_colors']
         
         self.buttons = [
             Button(
-            center_x, center_y - 100, width, height, "Начать игру", btn_colors['normal'], 
+            center_x, center_y - 100, WIDTH, HEIGHT, "Начать игру", btn_colors['normal'], 
             btn_colors['hover'], btn_colors['text'], border_color=btn_colors['border']
         ),
-            Button(center_x, center_y, width, height, "Настройки", btn_colors['normal'], 
+            Button(center_x, center_y, WIDTH, HEIGHT, "Настройки", btn_colors['normal'], 
             btn_colors['hover'], btn_colors['text'], border_color=btn_colors['border']
         ),
-            Button(center_x, center_y + 100, width, height, "Выход", (200, 100, 100), (250, 150, 150), (255, 255, 255))
+            Button(center_x, center_y + 100, WIDTH, HEIGHT, "Выход", (200, 100, 100), (250, 150, 150), (255, 255, 255))
         ]
 
     def setup_settings_menu(self):
-        width, height = 400, 80
-        center_x = self.screen.get_width() // 2 - width // 2
+        WIDTH, HEIGHT = 400, 80
+        center_x = self.screen.get_width() // 2 - WIDTH // 2
         center_y = self.screen.get_height() // 2 
         theme = THEMES[self.current_theme]
         btn_colors = theme['button_colors']
@@ -79,48 +79,48 @@ class Menu:
         # Фиксированные цвета для кнопок выбора темы
         self.buttons = [
             # Кнопка светлой темы
-            Button(center_x - 220, center_y - 180, width, height, "Тема: Светлая", 
+            Button(center_x - 220, center_y - 180, WIDTH, HEIGHT, "Тема: Светлая", 
                 (220, 220, 220), (240, 240, 240), (0, 0, 0), 
                 self.current_theme == 'light', (255, 255, 255), theme_key='light'),
         
             # Кнопка тёмной темы
-            Button(center_x - 220, center_y - 90, width, height, "Тема: Тёмная", 
+            Button(center_x - 220, center_y - 90, WIDTH, HEIGHT, "Тема: Тёмная", 
                 (60, 60, 80), (90, 90, 110), (255, 255, 255), 
                 self.current_theme == 'dark', (255, 255, 255), theme_key='dark'),
             
             # Кнопка космической темы
-            Button(center_x - 220, center_y, width, height, "Тема: Космос", 
+            Button(center_x - 220, center_y, WIDTH, HEIGHT, "Тема: Космос", 
                 (15, 10, 40), (10, 5, 30), (255, 255, 255), 
                 self.current_theme == 'cosmos', (255, 255, 255), theme_key='cosmos'),
             
             # Кнопка морской темы
-            Button(center_x - 220, center_y + 90, width, height, "Тема: Морская", 
+            Button(center_x - 220, center_y + 90, WIDTH, HEIGHT, "Тема: Морская", 
                 (10, 30, 60), (5, 20, 40), (255, 255, 255), 
                 self.current_theme == 'ocean', (255, 255, 255), theme_key='ocean'),
             
             # Кнопка сведневековой темы
-            Button(center_x - 220, center_y + 180, width, height, "Тема: Средневековье", 
+            Button(center_x - 220, center_y + 180, WIDTH, HEIGHT, "Тема: Средневековье", 
                 (80, 60, 40), (60, 40, 30), (255, 255, 255), 
                 self.current_theme == 'medieval', (255, 255, 255), theme_key='medieval'),
         
             # Кнопки размера
-            Button(center_x + 220, center_y - 180, width, height, "Размер: 4x4", 
+            Button(center_x + 220, center_y - 180, WIDTH, HEIGHT, "Размер: 4x4", 
                 btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
                 self.current_size == 4),
-            Button(center_x + 220, center_y - 90, width, height, "Размер: 5x5", 
+            Button(center_x + 220, center_y - 90, WIDTH, HEIGHT, "Размер: 5x5", 
                 btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
                 self.current_size == 5),
-            Button(center_x + 220, center_y, width, height, "Размер: 6x6", 
+            Button(center_x + 220, center_y, WIDTH, HEIGHT, "Размер: 6x6", 
                 btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
                 self.current_size == 6),
             
             # Кнопка таймера
-            Button(center_x + 220, center_y + 180, width, height, "Таймер", 
+            Button(center_x + 220, center_y + 180, WIDTH, HEIGHT, "Таймер", 
                 btn_colors['normal'], btn_colors['hover'], btn_colors['text'], 
                 self.timer_enabled if hasattr(self, 'timer_enabled') else False),
         
             # Кнопка назад
-            Button(center_x, center_y + 300, width, height, "Назад", 
+            Button(center_x, center_y + 300, WIDTH, HEIGHT, "Назад", 
                 (200, 150, 150), (230, 180, 180), (255, 255, 255))
         ]
         

@@ -3,7 +3,6 @@ import time
 from config import *
 from board import Board
 from ui import UI
-from config import TIMER_DURATION
 
 class Game:
     def __init__(self, screen, theme_name=DEFAULT_THEME, grid_size=DEFAULT_GRID_SIZE, timer_enabled=DEFAULT_TIMER_ENABLED):

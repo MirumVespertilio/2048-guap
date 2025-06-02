@@ -65,7 +65,7 @@ class UI:
             self.draw_game_over(timer_enabled, time_2048)
     
     def draw_score(self):
-        """Отрисовывает текущий счёт (всегда чёрный текст)"""
+        """Отрисовывает текущий счёт"""
         score_text = f"Счёт: {self.board.score}"
         font = pygame.font.SysFont('Arial', 48, bold=True)
         text_color = self.theme['button_colors']['text']
