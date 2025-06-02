@@ -43,10 +43,12 @@ def main():
                 button_clicked = menu.handle_event(event)
                 if button_clicked:
                     if button_clicked.startswith("Тема:"):
-                        theme_name = "light" if "Светлая" in button_clicked else "dark"
-                        game_settings["theme"] = theme_name
-                        menu.current_theme = theme_name  # Обновляем текущую тему в меню
-                        menu.setup_settings_menu()  # Пересоздаем меню с новыми выделениями
+                        for button in menu.buttons:
+                            if button.text == button_clicked and hasattr(button, 'theme_key'):
+                                game_settings["theme"] = button.theme_key
+                                menu.current_theme = button.theme_key
+                                menu.setup_settings_menu()
+                                break
                     elif button_clicked.startswith("Размер:"):
                         size = int(button_clicked.split("x")[0][-1])
                         game_settings["grid_size"] = size
