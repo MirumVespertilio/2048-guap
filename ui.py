@@ -119,7 +119,7 @@ class UI:
             
             # Сообщение
             font_medium = pygame.font.SysFont('Arial', 36)
-            if timer_enabled and time_2048:
+            if time_2048:
                 mins, secs = divmod(int(time_2048), 60)
                 time_str = f"{mins:02d}:{secs:02d}"
                 message = font_medium.render(f"Вы собрали 2048 за {time_str}!", True, (220, 220, 220))
