@@ -18,8 +18,8 @@ class Game:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE and self.board.won:
                 self.board.has_pressed_continue = True
-                self.board.won = False  # Сбрасываем флаг победы
-                self.timer_enabled = False  # Таймер остается выключенным
+                self.board.won = False
+                self.timer_enabled = False
             elif event.key == pygame.K_ESCAPE:
                 return "menu"
             elif event.key == pygame.K_r:
@@ -48,7 +48,6 @@ class Game:
         return None
     
     def run(self):
-        # Проверяем таймер только если игра не завершена и 2048 не достигнут
         if not self.board.is_game_over() and not self.board.won:
             if self.timer_enabled and self.start_time is not None:
                 elapsed = time.time() - self.start_time

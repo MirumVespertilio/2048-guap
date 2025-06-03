@@ -96,7 +96,7 @@ class UI:
         score_rect = score_text.get_rect(center=(center_x, center_y + 10))
         self.screen.blit(score_text, score_rect)
         
-        # Инструкция (теперь ниже)
+        # Инструкция
         font_small = pygame.font.SysFont('Arial', 36)
         instruction = font_small.render("Нажмите R чтобы начать снова", True, (220, 220, 220))
         instr_rect = instruction.get_rect(center=(center_x, center_y + 100))

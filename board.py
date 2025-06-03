@@ -85,7 +85,7 @@ class Board:
     
     def is_game_over(self):
         """Проверяет, остались ли возможные ходы"""
-        if self.game_over:  # Проверяем флаг game_over в первую очередь
+        if self.game_over:
             return True
         
         # Проверяем наличие пустых клеток
