@@ -1,12 +1,10 @@
 # 2048 Game
 
-<img src="https://github.com/gabrielecirulli/2048/blob/master/media/2048_logo.png?raw=true" alt="2048 Logo" width="200">
-
 ## Описание
 
 **2048** - это популярная головоломка, в которой игрок объединяет плитки с одинаковыми числами, чтобы получить плитку с числом 2048. Игра сочетает простые правила с глубокой стратегией, что делает её увлекательной для игроков любого уровня.
 
-![Game Screenshot](https://github.com/gabrielecirulli/2048/raw/master/media/screenshot.png)
+![Game Screenshot](https://github.com/user-attachments/assets/7ec3a963-42d8-4ce5-abc0-bf3a0ee69412)
 
 **Особенности:**
 - Несколько цветовых тем на выбор (Светлая, Тёмная, Космос, Океан, Средневековье)
