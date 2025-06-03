@@ -35,21 +35,21 @@ class Board:
         if direction == 'left':
             for i in range(self.size):
                 row = [tile for tile in self.grid[i] if tile != 0]
-                new_row = self._merge(row)
+                new_row = self.merge(row)
                 self.grid[i] = new_row + [0] * (self.size - len(new_row))
 
         elif direction == 'right':
             for i in range(self.size):
                 row = [tile for tile in self.grid[i] if tile != 0]
                 row = row[::-1]
-                new_row = self._merge(row)
+                new_row = self.merge(row)
                 self.grid[i] = [0] * (self.size - len(new_row)) + new_row[::-1]
 
         elif direction == 'up':
             self.grid = [list(col) for col in zip(*self.grid)]
             for i in range(self.size):
                 col = [tile for tile in self.grid[i] if tile != 0]
-                new_col = self._merge(col)
+                new_col = self.merge(col)
                 self.grid[i] = new_col + [0] * (self.size - len(new_col))
             self.grid = [list(row) for row in zip(*self.grid)]
 
@@ -58,7 +58,7 @@ class Board:
             for i in range(self.size):
                 col = [tile for tile in self.grid[i] if tile != 0]
                 col = col[::-1]
-                new_col = self._merge(col)
+                new_col = self.merge(col)
                 self.grid[i] = [0] * (self.size - len(new_col)) + new_col[::-1]
             self.grid = [list(row) for row in zip(*self.grid)] 
 
@@ -66,7 +66,7 @@ class Board:
         if original_grid != self.grid:
             self.add_random_tile()
 
-    def _merge(self, tiles):
+    def merge(self, tiles):
         """Сливает плитки в ряду или колонке и обновляет счёт"""
         new_tiles = []
         skip = False

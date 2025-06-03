@@ -29,7 +29,7 @@ class Game:
                     self.time_2048 = None
             elif not self.board.is_game_over() and not (self.board.won and not self.board.has_pressed_continue):
                 if event.key in (pygame.K_LEFT, pygame.K_RIGHT, pygame.K_UP, pygame.K_DOWN):
-                    direction = self._get_direction(event.key)
+                    direction = self.get_direction(event.key)
                     original_grid = [row[:] for row in self.board.grid]
                     self.board.move(direction)
                     if original_grid != self.board.grid:
@@ -39,7 +39,7 @@ class Game:
                             self.timer_enabled = False
         return None
     
-    def _get_direction(self, key):
+    def get_direction(self, key):
         """Преобразует код клавиши в направление"""
         if key == pygame.K_LEFT: return 'left'
         if key == pygame.K_RIGHT: return 'right'
