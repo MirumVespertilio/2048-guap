@@ -86,7 +86,7 @@ class UI:
         if timer_enabled and not time_2048:
             game_over_text = font_large.render("ВРЕМЯ ВЫШЛО!", True, (255, 70, 70))
         else:
-            game_over_text = font_large.render("ПОТРАЧЕНО", True, (255, 70, 70))
+            game_over_text = font_large.render("ВЫ ПРОИГРАЛИ", True, (255, 70, 70))
         game_over_rect = game_over_text.get_rect(center=(center_x, center_y - 60))
         self.screen.blit(game_over_text, game_over_rect)
         
